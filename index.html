@@ -189,6 +189,9 @@
       transition: background 0.4s ease, backdrop-filter 0.4s ease,
                   border-color 0.4s ease;
       border-bottom: 1px solid transparent;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      overflow: hidden;
     }
     #navbar.scrolled {
       background: rgba(13,13,13,0.88);
@@ -232,6 +235,7 @@
       flex-shrink: 1;
       flex-wrap: nowrap;
     }
+    .nav-links li { list-style: none; }
     .nav-links a {
       font-family: 'Montserrat', sans-serif;
       font-weight: 500;
