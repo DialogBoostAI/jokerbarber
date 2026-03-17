@@ -666,16 +666,24 @@
     ═══════════════════════════════════════════════════════════════ */
     #about {
       background: var(--dark);
+      padding: 7rem 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .about-parallax-bg {
+      position: absolute;
+      inset: -30% 0;
       background-image:
         linear-gradient(to bottom, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.72) 100%),
         linear-gradient(to right, rgba(13,13,13,0.95) 0%, rgba(13,13,13,0.75) 50%, rgba(0,0,0,0.6) 100%),
-        url('zdjecia/joker%20barber%20lokal.png');
+        url('zdjecia/joker barber lokal.webp');
       background-size: cover;
       background-position: center;
-      background-attachment: scroll;
-      padding: 7rem 0;
-      overflow: hidden;
+      will-change: transform;
+      pointer-events: none;
+      z-index: 0;
     }
+    #about .section-wrap { position: relative; z-index: 1; }
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1387,7 +1395,7 @@
       #testimonials,
       #contact,
       #footer {
-        zoom: 0.8;
+        zoom: 0.92;
       }
     }
 
@@ -1571,6 +1579,7 @@
      ABOUT
 ════════════════════════════════════════════════════════════════ -->
 <section id="about">
+  <div class="about-parallax-bg" id="aboutParallaxBg"></div>
   <div class="section-wrap">
     <div class="about-grid">
       <!-- Image col -->
@@ -2144,6 +2153,22 @@
       once: true,
     }
   });
+
+  /* ── About Parallax ─────────────────────────────────────────── */
+  const aboutParallaxBg = document.getElementById('aboutParallaxBg');
+  const aboutSection    = document.getElementById('about');
+  if (aboutParallaxBg && aboutSection) {
+    function updateAboutParallax() {
+      const rect     = aboutSection.getBoundingClientRect();
+      const winH     = window.innerHeight;
+      // progress: 0 when section bottom enters viewport, 1 when top leaves
+      const progress = 1 - (rect.bottom / (winH + rect.height));
+      const offset   = progress * 60; // px shift range
+      aboutParallaxBg.style.transform = `translateY(${offset}px)`;
+    }
+    window.addEventListener('scroll', updateAboutParallax, { passive: true });
+    updateAboutParallax();
+  }
 
   /* ── Scroll Reveal (IntersectionObserver) ───────────────────── */
   const revealObs = new IntersectionObserver((entries) => {
