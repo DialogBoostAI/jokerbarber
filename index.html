@@ -498,6 +498,7 @@
     .hero-ctas .btn {
       font-size: 1.5rem;
       padding: 1.275rem 3.375rem;
+      border-radius: 6px;
     }
     .hero-ctas {
       display: flex;
@@ -785,20 +786,15 @@
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: 260px;
+      grid-auto-rows: 280px;
       gap: 0.85rem;
-      grid-auto-flow: row dense;
     }
-    @media (max-width: 900px) {
+    @media (max-width: 768px) {
       .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 200px;
+        grid-auto-rows: 220px;
       }
-      .gallery-item--tall  { grid-row: span 1; }
-      .gallery-item--wide  { grid-column: span 1; }
     }
-    .gallery-item--tall { grid-row: span 2; }
-    .gallery-item--wide { grid-column: span 2; }
 
     .gallery-item {
       position: relative;
@@ -1616,63 +1612,43 @@
       <h2>DOWODY <span class="text-red">RZECZOWE</span></h2>
     </div>
     <div class="gallery-grid">
-      <!-- Ekipa — tall, prominent -->
-      <figure class="gallery-item gallery-item--tall" data-reveal data-delay="0">
-        <img src="zdjecia/ekipa%20joker%20barber%20.webp" alt="Ekipa Joker Barber" loading="lazy"/>
-        <div class="gallery-overlay"><span>NASZA EKIPA</span></div>
-      </figure>
-      <!-- Haircut 1 -->
-      <figure class="gallery-item" data-reveal data-delay="80">
+      <figure class="gallery-item" data-reveal data-delay="0">
         <img src="zdjecia/joker%20barber%20haircut%201.webp" alt="Haircut 1" loading="lazy"/>
         <div class="gallery-overlay"><span>PRECYZYJNE CIĘCIE</span></div>
       </figure>
-      <!-- Lokal — wide -->
-      <figure class="gallery-item gallery-item--wide" data-reveal data-delay="160">
-        <img src="zdjecia/joker%20barber%20lokal.webp" alt="Joker Barber lokal" loading="lazy"/>
-        <div class="gallery-overlay"><span>NASZ SALON</span></div>
-      </figure>
-      <!-- Haircut 2 -->
-      <figure class="gallery-item" data-reveal data-delay="80">
+      <figure class="gallery-item" data-reveal data-delay="60">
         <img src="zdjecia/JOKER%20Barber%20haircut%202.webp" alt="Haircut 2" loading="lazy"/>
         <div class="gallery-overlay"><span>KLASYCZNA ELEGANCJA</span></div>
       </figure>
-      <!-- Haircut 3 — tall -->
-      <figure class="gallery-item gallery-item--tall" data-reveal data-delay="0">
+      <figure class="gallery-item" data-reveal data-delay="120">
         <img src="zdjecia/joker%20barber%20haircut%203.webp" alt="Haircut 3" loading="lazy"/>
         <div class="gallery-overlay"><span>FADE MASTERCLASS</span></div>
       </figure>
-      <!-- Haircut 4 -->
-      <figure class="gallery-item" data-reveal data-delay="160">
+      <figure class="gallery-item" data-reveal data-delay="180">
         <img src="zdjecia/joker%20barber%20haircut%204.webp" alt="Haircut 4" loading="lazy"/>
         <div class="gallery-overlay"><span>TEKSTURA I STYL</span></div>
       </figure>
-      <!-- Haircut 5 -->
-      <figure class="gallery-item" data-reveal data-delay="240">
+      <figure class="gallery-item" data-reveal data-delay="0">
         <img src="zdjecia/joker%20barber%20haircut%205.webp" alt="Haircut 5" loading="lazy"/>
         <div class="gallery-overlay"><span>SKIN FADE</span></div>
       </figure>
-      <!-- Haircut 6 — wide -->
-      <figure class="gallery-item gallery-item--wide" data-reveal data-delay="80">
+      <figure class="gallery-item" data-reveal data-delay="60">
         <img src="zdjecia/joker%20barber%20haircut%206.webp" alt="Haircut 6" loading="lazy"/>
         <div class="gallery-overlay"><span>TAPER FADE</span></div>
       </figure>
-      <!-- Haircut 7 -->
-      <figure class="gallery-item" data-reveal data-delay="160">
+      <figure class="gallery-item" data-reveal data-delay="120">
         <img src="zdjecia/joker%20barberr%20haircut%207.webp" alt="Haircut 7" loading="lazy"/>
         <div class="gallery-overlay"><span>CLEAN FINISH</span></div>
       </figure>
-      <!-- Haircut 8 -->
-      <figure class="gallery-item" data-reveal data-delay="240">
+      <figure class="gallery-item" data-reveal data-delay="180">
         <img src="zdjecia/joker%20barber%20haricut%208.webp" alt="Haircut 8" loading="lazy"/>
         <div class="gallery-overlay"><span>PERFEKCYJNY KONTUR</span></div>
       </figure>
-      <!-- Haircut 9 -->
-      <figure class="gallery-item" data-reveal data-delay="80">
+      <figure class="gallery-item" data-reveal data-delay="0">
         <img src="zdjecia/joker%20haircut%209.webp" alt="Haircut 9" loading="lazy"/>
         <div class="gallery-overlay"><span>PRECYZJA</span></div>
       </figure>
-      <!-- Haircut 10 -->
-      <figure class="gallery-item" data-reveal data-delay="160">
+      <figure class="gallery-item" data-reveal data-delay="60">
         <img src="zdjecia/joker%20haircut%2010.webp" alt="Haircut 10" loading="lazy"/>
         <div class="gallery-overlay"><span>STYL</span></div>
       </figure>
