@@ -7,10 +7,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     /* ─── CSS Variables ─────────────────────────────────────────── */
@@ -670,7 +668,7 @@
         url('zdjecia/joker%20barber%20lokal.png');
       background-size: cover;
       background-position: center;
-      background-attachment: fixed;
+      background-attachment: scroll;
       padding: 7rem 0;
       overflow: hidden;
     }
@@ -811,9 +809,9 @@
     .gallery-item img {
       width: 100%; height: 100%;
       object-fit: cover;
-      filter: grayscale(40%) contrast(1.1);
-      transition: transform 0.65s cubic-bezier(0.34,1.2,0.64,1),
-                  filter 0.45s ease;
+      filter: grayscale(20%);
+      transition: transform 0.55s cubic-bezier(0.34,1.2,0.64,1),
+                  filter 0.35s ease;
     }
     .gallery-overlay {
       position: absolute; inset: 0;
@@ -1339,10 +1337,15 @@
     @media (max-width: 768px) {
       .nav-links, .btn-nav { display: none; }
       .nav-hamburger { display: flex; }
+      .nav-logo-text { display: none; }
       .hero-logo-img { width: clamp(120px, 38vw, 180px); }
       .nav-inner {
         padding: 0.9rem 1rem;
         align-items: center;
+      }
+      .hero-content {
+        transform: scale(0.8);
+        transform-origin: top center;
       }
     }
     @media (max-width: 768px) {
@@ -1393,7 +1396,7 @@
 <nav id="navbar" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="#hero" class="nav-logo" data-hover>
-      <img src="zdjecia_do_strony/logo.png" alt="Joker Barber logo" />
+      <img src="zdjecia_do_strony/logo.webp" alt="Joker Barber logo" />
       <span class="nav-logo-text">JOKER <span>BARBER</span></span>
     </a>
     <ul class="nav-links" role="list">
@@ -1417,13 +1420,13 @@
   <div class="hero-panel hero-panel--blue" id="heroBlue"></div>
   <div class="hero-panel hero-panel--red"  id="heroRed"></div>
   <div class="hero-joker-bg" aria-hidden="true">
-    <img src="zdjecia_do_strony/joker.png" alt="" />
+    <img src="zdjecia_do_strony/joker.webp" alt="" />
   </div>
   <div class="hero-noise" aria-hidden="true"></div>
 
   <div class="hero-content">
     <div class="hero-logo-wrap" id="heroLogo">
-      <img src="zdjecia_do_strony/logo.png"
+      <img src="zdjecia_do_strony/logo.webp"
            alt="Joker Barber mascot"
            class="hero-logo-img" />
     </div>
@@ -1547,7 +1550,7 @@
     <div class="about-grid">
       <!-- Image col -->
       <div class="about-image-wrap" data-reveal-left>
-        <img src="zdjecia/crew.png"
+        <img src="zdjecia/crew.webp"
              alt="Ekipa Joker Barber"
              class="about-img" />
         <div class="about-img-overlay"></div>
@@ -1615,62 +1618,62 @@
     <div class="gallery-grid">
       <!-- Ekipa — tall, prominent -->
       <figure class="gallery-item gallery-item--tall" data-reveal data-delay="0">
-        <img src="zdjecia/ekipa%20joker%20barber%20.png" alt="Ekipa Joker Barber" loading="lazy"/>
+        <img src="zdjecia/ekipa%20joker%20barber%20.webp" alt="Ekipa Joker Barber" loading="lazy"/>
         <div class="gallery-overlay"><span>NASZA EKIPA</span></div>
       </figure>
       <!-- Haircut 1 -->
       <figure class="gallery-item" data-reveal data-delay="80">
-        <img src="zdjecia/joker%20barber%20haircut%201.png" alt="Haircut 1" loading="lazy"/>
+        <img src="zdjecia/joker%20barber%20haircut%201.webp" alt="Haircut 1" loading="lazy"/>
         <div class="gallery-overlay"><span>PRECYZYJNE CIĘCIE</span></div>
       </figure>
       <!-- Lokal — wide -->
       <figure class="gallery-item gallery-item--wide" data-reveal data-delay="160">
-        <img src="zdjecia/joker%20barber%20lokal.png" alt="Joker Barber lokal" loading="lazy"/>
+        <img src="zdjecia/joker%20barber%20lokal.webp" alt="Joker Barber lokal" loading="lazy"/>
         <div class="gallery-overlay"><span>NASZ SALON</span></div>
       </figure>
       <!-- Haircut 2 -->
       <figure class="gallery-item" data-reveal data-delay="80">
-        <img src="zdjecia/JOKER%20Barber%20haircut%202.png" alt="Haircut 2" loading="lazy"/>
+        <img src="zdjecia/JOKER%20Barber%20haircut%202.webp" alt="Haircut 2" loading="lazy"/>
         <div class="gallery-overlay"><span>KLASYCZNA ELEGANCJA</span></div>
       </figure>
       <!-- Haircut 3 — tall -->
       <figure class="gallery-item gallery-item--tall" data-reveal data-delay="0">
-        <img src="zdjecia/joker%20barber%20haircut%203.png" alt="Haircut 3" loading="lazy"/>
+        <img src="zdjecia/joker%20barber%20haircut%203.webp" alt="Haircut 3" loading="lazy"/>
         <div class="gallery-overlay"><span>FADE MASTERCLASS</span></div>
       </figure>
       <!-- Haircut 4 -->
       <figure class="gallery-item" data-reveal data-delay="160">
-        <img src="zdjecia/joker%20barber%20haircut%204.png" alt="Haircut 4" loading="lazy"/>
+        <img src="zdjecia/joker%20barber%20haircut%204.webp" alt="Haircut 4" loading="lazy"/>
         <div class="gallery-overlay"><span>TEKSTURA I STYL</span></div>
       </figure>
       <!-- Haircut 5 -->
       <figure class="gallery-item" data-reveal data-delay="240">
-        <img src="zdjecia/joker%20barber%20haircut%205.png" alt="Haircut 5" loading="lazy"/>
+        <img src="zdjecia/joker%20barber%20haircut%205.webp" alt="Haircut 5" loading="lazy"/>
         <div class="gallery-overlay"><span>SKIN FADE</span></div>
       </figure>
       <!-- Haircut 6 — wide -->
       <figure class="gallery-item gallery-item--wide" data-reveal data-delay="80">
-        <img src="zdjecia/joker%20barber%20haircut%206.png" alt="Haircut 6" loading="lazy"/>
+        <img src="zdjecia/joker%20barber%20haircut%206.webp" alt="Haircut 6" loading="lazy"/>
         <div class="gallery-overlay"><span>TAPER FADE</span></div>
       </figure>
       <!-- Haircut 7 -->
       <figure class="gallery-item" data-reveal data-delay="160">
-        <img src="zdjecia/joker%20barberr%20haircut%207.png" alt="Haircut 7" loading="lazy"/>
+        <img src="zdjecia/joker%20barberr%20haircut%207.webp" alt="Haircut 7" loading="lazy"/>
         <div class="gallery-overlay"><span>CLEAN FINISH</span></div>
       </figure>
       <!-- Haircut 8 -->
       <figure class="gallery-item" data-reveal data-delay="240">
-        <img src="zdjecia/joker%20barber%20haricut%208.png" alt="Haircut 8" loading="lazy"/>
+        <img src="zdjecia/joker%20barber%20haricut%208.webp" alt="Haircut 8" loading="lazy"/>
         <div class="gallery-overlay"><span>PERFEKCYJNY KONTUR</span></div>
       </figure>
       <!-- Haircut 9 -->
       <figure class="gallery-item" data-reveal data-delay="80">
-        <img src="zdjecia/joker%20haircut%209.png" alt="Haircut 9" loading="lazy"/>
+        <img src="zdjecia/joker%20haircut%209.webp" alt="Haircut 9" loading="lazy"/>
         <div class="gallery-overlay"><span>PRECYZJA</span></div>
       </figure>
       <!-- Haircut 10 -->
       <figure class="gallery-item" data-reveal data-delay="160">
-        <img src="zdjecia/joker%20haircut%2010.png" alt="Haircut 10" loading="lazy"/>
+        <img src="zdjecia/joker%20haircut%2010.webp" alt="Haircut 10" loading="lazy"/>
         <div class="gallery-overlay"><span>STYL</span></div>
       </figure>
     </div>
@@ -1983,7 +1986,7 @@
     <div class="footer-top">
       <!-- Brand -->
       <div class="footer-brand">
-        <img src="zdjecia_do_strony/logo.png" alt="Joker Barber" />
+        <img src="zdjecia_do_strony/logo.webp" alt="Joker Barber" />
         <p>Tam, gdzie styl staje się obsesją.<br />Joker Barber — Precyzja ponad wszystko.<br />Rzeszów, Polska.</p>
       </div>
 
@@ -2023,6 +2026,9 @@
     </div>
   </div>
 </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <!-- ═══════════════════════════════════════════════════════════════
      JAVASCRIPT
