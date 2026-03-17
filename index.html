@@ -391,6 +391,7 @@
       position: absolute;
       top: 0; bottom: 0;
       width: 50vw;
+      will-change: transform;
     }
     .hero-panel--blue {
       left: 0;
@@ -459,6 +460,7 @@
     .hero-logo-wrap {
       opacity: 0;
       transform: scale(0.25);
+      will-change: transform, opacity;
     }
     .hero-logo-img {
       width: clamp(180px, 24vw, 300px);
@@ -474,8 +476,8 @@
       font-size: clamp(1rem, 3.5vw, 2rem);
       letter-spacing: 0.45em;
     }
-    .hero-brand--blue { color: #fff; opacity: 0; transform: translateX(-30px); }
-    .hero-brand--red  { color: #fff; opacity: 0; transform: translateX(30px); }
+    .hero-brand--blue { color: #fff; opacity: 0; transform: translateX(-30px); will-change: transform, opacity; }
+    .hero-brand--red  { color: #fff; opacity: 0; transform: translateX(30px);  will-change: transform, opacity; }
 
     .hero-headline {
       font-size: clamp(3.2rem, 8.5vw, 8rem);
@@ -485,8 +487,8 @@
       gap: 0.05em;
       text-shadow: 0 4px 40px rgba(0,0,0,0.5);
     }
-    .hl-left  { opacity: 0; transform: translateX(-90px); }
-    .hl-right { opacity: 0; transform: translateX(90px); }
+    .hl-left  { opacity: 0; transform: translateX(-90px); will-change: transform, opacity; }
+    .hl-right { opacity: 0; transform: translateX(90px);  will-change: transform, opacity; }
 
     .hero-subline {
       font-size: clamp(1.275rem, 2.7vw, 1.575rem);
@@ -496,6 +498,7 @@
       line-height: 1.7;
       opacity: 0;
       transform: translateY(22px);
+      will-change: transform, opacity;
     }
 
     .hero-ctas .btn {
@@ -511,6 +514,7 @@
       margin-top: 0.3rem;
       opacity: 0;
       transform: translateY(22px);
+      will-change: transform, opacity;
     }
 
     /* Scroll indicator */
@@ -2132,7 +2136,11 @@
     .to('#scrollInd', { opacity: 1, duration: 0.5 }, 2.1)
 
   // 8. Navbar — wchodzi podczas rozkładania
-    .to('#navbar', { opacity: 1, duration: 0.6, ease: 'power2.out' }, 0.8);
+    .to('#navbar', { opacity: 1, duration: 0.6, ease: 'power2.out' }, 0.8)
+    .call(() => {
+      document.querySelectorAll('.hero-panel, .hero-logo-wrap, .hero-brand--blue, .hero-brand--red, .hl-left, .hl-right, .hero-subline, .hero-ctas')
+        .forEach(el => el.style.willChange = 'auto');
+    });
 
   /* ── Hero Parallax ──────────────────────────────────────────── */
   window.addEventListener('scroll', () => {
