@@ -674,10 +674,9 @@
     }
     .about-parallax-bg {
       position: absolute;
-      inset: -30% 0;
+      inset: -40% 0;
       background-image:
-        linear-gradient(to bottom, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.72) 100%),
-        linear-gradient(to right, rgba(13,13,13,0.95) 0%, rgba(13,13,13,0.75) 50%, rgba(0,0,0,0.6) 100%),
+        linear-gradient(to right, rgba(13,13,13,0.88) 0%, rgba(13,13,13,0.55) 55%, rgba(0,0,0,0.3) 100%),
         url('zdjecia/joker%20barber%20lokal.webp');
       background-size: cover;
       background-position: center;
@@ -2181,7 +2180,7 @@
       const winH     = window.innerHeight;
       // progress: 0 when section bottom enters viewport, 1 when top leaves
       const progress = 1 - (rect.bottom / (winH + rect.height));
-      const offset   = progress * 60; // px shift range
+      const offset   = progress * 120; // px shift range
       aboutParallaxBg.style.transform = `translateY(${offset}px)`;
     }
     window.addEventListener('scroll', updateAboutParallax, { passive: true });
