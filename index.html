@@ -311,7 +311,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 0.45rem;
+      gap: 10px;
       position: fixed;
       inset: 0;
       background: url('zdjecia_do_strony/joker.png') center/cover no-repeat;
@@ -339,7 +339,7 @@
     }
     .nav-mobile-menu a {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 3rem;
+      font-size: 2.1rem;
       letter-spacing: 0.06em;
       color: #fff;
       transition: color 0.2s ease,
@@ -367,7 +367,7 @@
       padding: 0.85rem 2.8rem;
       border: 2px solid var(--red);
       color: #fff !important;
-      font-size: 1.6rem !important;
+      font-size: 1.12rem !important;
       background: var(--red);
       transition: background 0.2s ease, transform 0.2s ease, opacity 0.35s ease, translate 0.35s ease !important;
     }
@@ -1340,8 +1340,11 @@
       .nav-logo-text { display: none; }
       .hero-logo-img { width: clamp(120px, 38vw, 180px); }
       .nav-inner {
-        padding: 0.9rem 1rem;
+        padding: 0.63rem 1rem;
         align-items: center;
+      }
+      .nav-logo img {
+        height: 44px;
       }
       .hero-content {
         transform: scale(0.8);
@@ -1372,6 +1375,27 @@
         width: 85%;
         font-size: 1.2rem;
       }
+    }
+
+    /* ─── Mobile: scale non-hero sections to 0.8 ─────────────── */
+    @media (max-width: 768px) {
+      #scissorsDivider,
+      #services,
+      #about,
+      #gallery,
+      #pricing,
+      #testimonials,
+      #contact,
+      #footer {
+        zoom: 0.8;
+      }
+    }
+
+    /* ─── iOS scroll lock when mobile menu open ──────────────── */
+    body.menu-open {
+      overflow: hidden;
+      position: fixed;
+      width: 100%;
     }
   </style>
 </head>
@@ -2029,18 +2053,28 @@
   const mobileMenu  = document.getElementById('mobileMenu');
   const mobileLinks = document.querySelectorAll('.mobile-link');
 
+  let scrollY = 0;
+
   function closeMenu() {
     mobileMenu.classList.remove('open');
     menuToggle.classList.remove('open');
     menuToggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
+    document.body.classList.remove('menu-open');
+    document.body.style.top = '';
+    window.scrollTo(0, scrollY);
   }
 
   menuToggle.addEventListener('click', () => {
     const open = mobileMenu.classList.toggle('open');
     menuToggle.classList.toggle('open');
     menuToggle.setAttribute('aria-expanded', open);
-    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) {
+      scrollY = window.scrollY;
+      document.body.style.top = `-${scrollY}px`;
+      document.body.classList.add('menu-open');
+    } else {
+      closeMenu();
+    }
     // reset link states so stagger re-fires on next open
     if (!open) {
       mobileLinks.forEach(l => {
