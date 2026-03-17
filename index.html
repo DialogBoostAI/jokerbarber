@@ -485,10 +485,10 @@
       display: flex;
       flex-direction: column;
       gap: 0.05em;
-      text-shadow: 0 4px 40px rgba(0,0,0,0.5);
+      transform: translateZ(0);
     }
-    .hl-left  { opacity: 0; transform: translateX(-90px); will-change: transform, opacity; }
-    .hl-right { opacity: 0; transform: translateX(90px);  will-change: transform, opacity; }
+    .hl-left  { opacity: 0; transform: translate3d(-90px, 0, 0); will-change: transform, opacity; backface-visibility: hidden; }
+    .hl-right { opacity: 0; transform: translate3d(90px, 0, 0);  will-change: transform, opacity; backface-visibility: hidden; }
 
     .hero-subline {
       font-size: clamp(1.275rem, 2.7vw, 1.575rem);
@@ -2123,8 +2123,8 @@
     }, 1.1)
 
   // 4. Headline — during unfold
-    .to('#hlLeft',  { opacity: 1, x: 0, duration: 0.75, ease: 'power3.out' }, 1.35)
-    .to('#hlRight', { opacity: 1, x: 0, duration: 0.75, ease: 'power3.out' }, 1.5)
+    .to('#hlLeft',  { opacity: 1, x: 0, duration: 0.75, ease: 'power3.out', force3D: true }, 1.35)
+    .to('#hlRight', { opacity: 1, x: 0, duration: 0.75, ease: 'power3.out', force3D: true }, 1.5)
 
   // 5. Subline — panels still finishing
     .to('#heroSub', { opacity: 1, y: 0, duration: 0.65 }, 1.7)
