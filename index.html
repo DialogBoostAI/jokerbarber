@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600&display=block" rel="stylesheet" />
 
   <style>
     /* ─── CSS Variables ─────────────────────────────────────────── */
@@ -2102,6 +2102,7 @@
   /* ── GSAP Hero Timeline ─────────────────────────────────────── */
   gsap.registerPlugin(ScrollTrigger);
 
+  document.fonts.ready.then(() => {
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
   // 1. Panels slide in simultaneously — slower unfold
@@ -2141,6 +2142,7 @@
       document.querySelectorAll('.hero-panel, .hero-logo-wrap, .hero-brand--blue, .hero-brand--red, .hl-left, .hl-right, .hero-subline, .hero-ctas')
         .forEach(el => el.style.willChange = 'auto');
     });
+  }); // document.fonts.ready
 
   /* ── Hero Parallax ──────────────────────────────────────────── */
   window.addEventListener('scroll', () => {
