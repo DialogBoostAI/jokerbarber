@@ -189,9 +189,7 @@
       transition: background 0.4s ease, backdrop-filter 0.4s ease,
                   border-color 0.4s ease;
       border-bottom: 1px solid transparent;
-      transform: translateZ(0);
-      -webkit-transform: translateZ(0);
-      overflow: hidden;
+      will-change: transform;
     }
     #navbar.scrolled {
       background: rgba(13,13,13,0.88);
@@ -294,18 +292,19 @@
     .nav-hamburger {
       display: none;
       flex-direction: column;
-      gap: 5px;
-      padding: 4px;
+      gap: 6px;
+      padding: 8px;
+      overflow: hidden;
     }
     .nav-hamburger span {
-      width: 26px; height: 2px;
+      width: 22px; height: 2px;
       background: #fff;
       display: block;
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
     .nav-mobile-menu {
       display: flex;
@@ -1335,7 +1334,8 @@
        RESPONSIVE OVERRIDES
     ═══════════════════════════════════════════════════════════════ */
     @media (max-width: 768px) {
-      .nav-links, .btn-nav { display: none; }
+      .nav-links, .btn-nav { display: none !important; visibility: hidden !important; }
+      .nav-links li, .nav-links li::before, .nav-links li::after { list-style: none !important; display: none !important; }
       .nav-hamburger { display: flex; }
       .nav-logo-text { display: none; }
       .hero-logo-img { width: clamp(120px, 38vw, 180px); }
