@@ -423,6 +423,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      opacity: 0;
     }
     .hero-joker-bg img {
       height: 100%;
@@ -2113,9 +2114,10 @@
   // Panels start immediately — no font wait needed
   const tlPanels = gsap.timeline({ defaults: { ease: 'power4.out' } });
   tlPanels
-    .to('#heroBlue', { x: '0%', duration: 1.9 }, 0)
-    .to('#heroRed',  { x: '0%', duration: 1.9 }, 0)
-    .to('#navbar',   { opacity: 1, duration: 0.6, ease: 'power2.out' }, 0.8);
+    .to('#heroBlue',     { x: '0%', duration: 1.9 }, 0)
+    .to('#heroRed',      { x: '0%', duration: 1.9 }, 0)
+    .to('.hero-joker-bg', { opacity: 1, duration: 1.4, ease: 'power2.inOut' }, 0.3)
+    .to('#navbar',       { opacity: 1, duration: 0.6, ease: 'power2.out' }, 0.8);
 
   // Text elements wait for fonts to be loaded
   document.fonts.ready.then(() => {
