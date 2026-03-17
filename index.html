@@ -940,12 +940,24 @@
     .pricing-card:nth-child(1):hover,
     .pricing-card:nth-child(3):hover { box-shadow: var(--shadow-blue); }
 
+    @keyframes featured-pulse {
+      0%, 100% {
+        box-shadow: 0 8px 40px rgba(208,65,51,0.35), 0 2px 8px rgba(208,65,51,0.2);
+        border-color: rgba(208,65,51,0.22);
+      }
+      50% {
+        box-shadow: 0 12px 56px rgba(208,65,51,0.6), 0 4px 16px rgba(208,65,51,0.35);
+        border-color: rgba(208,65,51,0.5);
+      }
+    }
     .pricing-card--featured {
       border-color: rgba(208,65,51,0.28);
       box-shadow: var(--shadow-red);
       padding-top: 3rem;
+      animation: featured-pulse 3s ease-in-out infinite;
     }
     .pricing-card--featured:hover {
+      animation-play-state: paused;
       box-shadow: 0 20px 60px rgba(208,65,51,0.55);
     }
 
