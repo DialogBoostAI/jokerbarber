@@ -1064,8 +1064,11 @@
       gap: 1.25rem;
       width: max-content;
       animation: marquee 36s linear infinite;
+      will-change: transform;
     }
-    .testi-track:hover { animation-play-state: paused; }
+    @media (hover: hover) {
+      .testi-track:hover { animation-play-state: paused; }
+    }
 
     @keyframes marquee {
       from { transform: translateX(0); }
