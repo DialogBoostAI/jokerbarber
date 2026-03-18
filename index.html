@@ -2531,7 +2531,7 @@
     if (h2)  { const ch = splitChars(h2);  t = reveal(ch, t, 22); t += 80; }
     ps.forEach(p => { const w = splitWords(p); t = reveal(w, t, 55); t += 60; });
     if (stats) setTimeout(() => stats.classList.add('anim-in'), t);
-    setTimeout(() => $$('#aboutStats .counter').forEach(ticker), t + 500);
+    setTimeout(() => $$('#aboutStats .counter').forEach(ticker), t);
   }, { threshold: 0.01 });
 
   /* ══════════════════════════════════════════════════════════
