@@ -2525,13 +2525,14 @@
     const ps   = $$('.about-text > p');
     const stats= $('.about-stats');
 
-    let t = 120; // initial delay after trigger
+    const START = 120;
+    let maxT = START;
 
-    if (tag) { const ch = splitChars(tag); t = reveal(ch, t, 28); t += 60; }
-    if (h2)  { const ch = splitChars(h2);  t = reveal(ch, t, 22); t += 80; }
-    ps.forEach(p => { const w = splitWords(p); t = reveal(w, t, 55); t += 60; });
-    if (stats) setTimeout(() => stats.classList.add('anim-in'), t);
-    setTimeout(() => $$('#aboutStats .counter').forEach(ticker), t);
+    if (tag) { const ch = splitChars(tag); maxT = Math.max(maxT, reveal(ch, START, 28)); }
+    if (h2)  { const ch = splitChars(h2);  maxT = Math.max(maxT, reveal(ch, START, 22)); }
+    ps.forEach(p => { const w = splitWords(p); maxT = Math.max(maxT, reveal(w, START, 55)); });
+    if (stats) setTimeout(() => stats.classList.add('anim-in'), maxT + 80);
+    setTimeout(() => $$('#aboutStats .counter').forEach(ticker), maxT + 80);
   }, { threshold: 0.01 });
 
   /* ══════════════════════════════════════════════════════════
