@@ -2234,9 +2234,9 @@
 .about-img { will-change: transform; transform-origin: center; }
 .about-text {
   opacity: 0;
-  transform: translateX(32px);
-  transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.18s,
-              transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.18s;
+  transform: translateX(-28px);
+  transition: opacity 0.85s cubic-bezier(0.22,1,0.36,1) 0.22s,
+              transform 0.85s cubic-bezier(0.22,1,0.36,1) 0.22s;
 }
 .about-text.anim-in { opacity: 1; transform: translateX(0); }
 
@@ -2466,7 +2466,7 @@
     const at = $('.about-text');
     if (iw) iw.classList.add('anim-in');
     if (at) setTimeout(() => at.classList.add('anim-in'), 190);
-  }, { threshold: 0.1 });
+  }, { threshold: 0.01 });
 
   /* ══════════════════════════════════════════════════════════
      4. ABOUT — Number Ticker (nonlinear easeOutExpo)
@@ -2482,7 +2482,7 @@
       if (p < 1) requestAnimationFrame(step);
     })(performance.now());
   }
-  io($('#about'), () => $$('.counter').forEach(ticker), { threshold: 0.1 });
+  io($('#about'), () => setTimeout(() => $$('.counter').forEach(ticker), 900), { threshold: 0.01 });
 
   /* ══════════════════════════════════════════════════════════
      5. GALLERY — Header + Ladder Reveal
