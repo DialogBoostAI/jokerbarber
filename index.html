@@ -2236,11 +2236,11 @@
 .about-text h2,
 .about-text p {
   clip-path: inset(0 100% 0 0);
-  transition: clip-path 0.75s cubic-bezier(0.22,1,0.36,1);
+  transition: clip-path 1.5s cubic-bezier(0.22,1,0.36,1);
 }
 .about-text.anim-in .section-tag { transition-delay: 0s; }
-.about-text.anim-in h2           { transition-delay: 0.08s; }
-.about-text.anim-in p            { transition-delay: 0.16s; }
+.about-text.anim-in h2           { transition-delay: 0.16s; }
+.about-text.anim-in p            { transition-delay: 0.32s; }
 .about-text.anim-in .section-tag,
 .about-text.anim-in h2,
 .about-text.anim-in p { clip-path: inset(0 0% 0 0); }
@@ -2472,18 +2472,23 @@
       }
     );
   }
-  io($('#about'), () => {
-    const iw    = $('.about-image-wrap');
-    const at    = $('.about-text');
-    const stats = $('.about-stats');
+  ScrollTrigger.create({
+    trigger: '#about',
+    start: 'top 99%',
+    once: true,
+    onEnter: () => {
+      const iw    = $('.about-image-wrap');
+      const at    = $('.about-text');
+      const stats = $('.about-stats');
 
-    if (iw) iw.classList.add('anim-in');
-    if (at) at.classList.add('anim-in');
+      if (iw) iw.classList.add('anim-in');
+      if (at) at.classList.add('anim-in');
 
-    const done = (0.16 + 0.75) * 1000 + 80; // longest delay + transition + buffer
-    if (stats) setTimeout(() => stats.classList.add('anim-in'), done);
-    setTimeout(() => $$('#aboutStats .counter').forEach(ticker), done);
-  }, { threshold: 0.01 });
+      const done = (0.32 + 1.5) * 1000 + 100; // longest delay + transition + buffer
+      if (stats) setTimeout(() => stats.classList.add('anim-in'), done);
+      setTimeout(() => $$('#aboutStats .counter').forEach(ticker), done);
+    }
+  });
 
   /* ══════════════════════════════════════════════════════════
      4. ABOUT — Number Ticker (nonlinear easeOutExpo)
