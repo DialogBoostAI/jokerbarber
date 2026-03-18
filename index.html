@@ -352,7 +352,9 @@
     .mobile-link--btn {
       margin-top: 1.5rem;
       padding: 0.85rem 2.8rem;
+      border-radius: 6px;
       border: 2px solid var(--red);
+      animation: btn-mobile-glow 2s ease-in-out infinite;
       color: #fff !important;
       font-size: 1.12rem !important;
       background: var(--red);
@@ -2489,8 +2491,10 @@
 
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     const gItems = $$('.gallery-item');
+    const isMobile = window.innerWidth <= 768;
+    if (!isMobile) {
     gsap.set(gItems, { opacity: 0, y: 32 });
-    const cols = window.innerWidth <= 768 ? 2 : 4;
+    const cols = 4;
     gItems.forEach((item, idx) => {
       const r = Math.floor(idx / cols), c = idx % cols;
       ScrollTrigger.create({
@@ -2502,6 +2506,7 @@
         }),
       });
     });
+    }
 
     /* ─── Gallery — Magnetic Tilt ───────────────── */
     gItems.forEach(item => {
