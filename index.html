@@ -105,6 +105,7 @@
       padding: 0.85rem 2.25rem;
       background: var(--red);
       color: #fff;
+      border-radius: 6px;
       box-shadow: var(--shadow-red);
     }
     .btn-primary::before {
@@ -119,7 +120,8 @@
       50%       { box-shadow: 0 0 18px 6px rgba(208,65,51,0.8), 0 0 40px 10px rgba(208,65,51,0.4); }
     }
     @media (max-width: 768px) {
-      .hero-ctas .btn-primary {
+      .hero-ctas .btn-primary,
+      .nav-mobile-menu .btn-primary {
         animation: btn-mobile-glow 2s ease-in-out infinite;
       }
     }
@@ -352,9 +354,7 @@
     .mobile-link--btn {
       margin-top: 1.5rem;
       padding: 0.85rem 2.8rem;
-      border-radius: 6px;
       border: 2px solid var(--red);
-      animation: btn-mobile-glow 2s ease-in-out infinite;
       color: #fff !important;
       font-size: 1.12rem !important;
       background: var(--red);
