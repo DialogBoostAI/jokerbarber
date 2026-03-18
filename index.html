@@ -2232,13 +2232,19 @@
 }
 .about-image-wrap.anim-in { opacity: 1; transform: translateX(0); }
 .about-img { will-change: transform; transform-origin: center; }
-.about-text {
+.abt-char, .abt-word {
+  display: inline-block;
   opacity: 0;
-  transform: translateX(-28px);
-  transition: opacity 0.85s cubic-bezier(0.22,1,0.36,1) 0.22s,
-              transform 0.85s cubic-bezier(0.22,1,0.36,1) 0.22s;
+  transform: translateY(10px);
+  transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.22,1,0.36,1);
 }
-.about-text.anim-in { opacity: 1; transform: translateX(0); }
+.abt-word { margin-right: 0.28em; }
+.about-stats {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.about-stats.anim-in { opacity: 1; transform: translateY(0); }
 
 /* ─── Gallery ──────────────────────────────────────────────── */
 .gallery-header {
@@ -2461,11 +2467,70 @@
       }
     );
   }
+  /* ── char/word split helpers ── */
+  function splitChars(el) {
+    const chars = [];
+    (function walk(node) {
+      if (node.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        [...node.textContent].forEach(ch => {
+          if (ch === ' ') { frag.appendChild(document.createTextNode(' ')); return; }
+          const s = document.createElement('span');
+          s.className = 'abt-char';
+          s.textContent = ch;
+          chars.push(s);
+          frag.appendChild(s);
+        });
+        node.parentNode.replaceChild(frag, node);
+      } else if (node.nodeType === 1) {
+        Array.from(node.childNodes).forEach(walk);
+      }
+    })(el);
+    return chars;
+  }
+  function splitWords(el) {
+    const words = [];
+    (function walk(node) {
+      if (node.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        node.textContent.split(/(\s+)/).forEach(tok => {
+          if (/^\s+$/.test(tok)) { frag.appendChild(document.createTextNode(' ')); return; }
+          if (!tok) return;
+          const s = document.createElement('span');
+          s.className = 'abt-word';
+          s.textContent = tok;
+          words.push(s);
+          frag.appendChild(s);
+        });
+        node.parentNode.replaceChild(frag, node);
+      } else if (node.nodeType === 1) {
+        Array.from(node.childNodes).forEach(walk);
+      }
+    })(el);
+    return words;
+  }
+  function reveal(spans, startDelay, perDelay) {
+    spans.forEach((s, i) => setTimeout(() => {
+      s.style.opacity = '1'; s.style.transform = 'translateY(0)';
+    }, startDelay + i * perDelay));
+    return startDelay + spans.length * perDelay;
+  }
+
   io($('#about'), () => {
     const iw = $('.about-image-wrap');
-    const at = $('.about-text');
     if (iw) iw.classList.add('anim-in');
-    if (at) setTimeout(() => at.classList.add('anim-in'), 190);
+
+    const tag  = $('.about-text .section-tag');
+    const h2   = $('.about-text h2');
+    const ps   = $$('.about-text > p');
+    const stats= $('.about-stats');
+
+    let t = 120; // initial delay after trigger
+
+    if (tag) { const ch = splitChars(tag); t = reveal(ch, t, 28); t += 60; }
+    if (h2)  { const ch = splitChars(h2);  t = reveal(ch, t, 22); t += 80; }
+    ps.forEach(p => { const w = splitWords(p); t = reveal(w, t, 55); t += 60; });
+    if (stats) setTimeout(() => stats.classList.add('anim-in'), t);
   }, { threshold: 0.01 });
 
   /* ══════════════════════════════════════════════════════════
@@ -2482,7 +2547,7 @@
       if (p < 1) requestAnimationFrame(step);
     })(performance.now());
   }
-  io($('#about'), () => setTimeout(() => $$('.counter').forEach(ticker), 900), { threshold: 0.01 });
+  io($('#about'), () => setTimeout(() => $$('#aboutStats .counter').forEach(ticker), 900), { threshold: 0.01 });
 
   /* ══════════════════════════════════════════════════════════
      5. GALLERY — Header + Ladder Reveal
