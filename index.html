@@ -2071,7 +2071,28 @@
       mobileLinks.forEach(l => l.style.transitionDelay = '');
     }
   });
-  mobileLinks.forEach(l => l.addEventListener('click', closeMenu));
+  mobileLinks.forEach(l => {
+    l.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (!href || !href.startsWith('#')) { closeMenu(); return; }
+
+      e.preventDefault();
+
+      const targetEl = document.querySelector(href);
+      if (!targetEl) { closeMenu(); return; }
+
+      const navH = (document.querySelector('.nav-wrap') || document.querySelector('nav') || { offsetHeight: 70 }).offsetHeight;
+      const targetY = targetEl.offsetTop - navH;
+
+      closeMenu();                                         // removes fixed body, restores scrollY
+      window.scrollTo({ top: targetY, behavior: 'instant' }); // instant jump — no flying camera
+
+      gsap.fromTo(targetEl,
+        { opacity: 0.55, x: 26 },
+        { opacity: 1, x: 0, duration: 0.52, ease: 'power2.out', clearProps: 'all' }
+      );
+    });
+  });
 
   /* ── GSAP Hero Timeline ─────────────────────────────────────── */
   gsap.registerPlugin(ScrollTrigger);
