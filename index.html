@@ -2081,11 +2081,8 @@
       const targetEl = document.querySelector(href);
       if (!targetEl) { closeMenu(); return; }
 
-      const navH = (document.querySelector('.nav-wrap') || document.querySelector('nav') || { offsetHeight: 70 }).offsetHeight;
-      const targetY = targetEl.offsetTop - navH;
-
-      closeMenu();                                         // removes fixed body, restores scrollY
-      window.scrollTo({ top: targetY, behavior: 'instant' }); // instant jump — no flying camera
+      closeMenu();                                              // removes fixed body, restores scrollY
+      targetEl.scrollIntoView({ behavior: 'instant', block: 'start' }); // same position as native anchor
 
       gsap.fromTo(targetEl,
         { opacity: 0.55, x: 26 },
