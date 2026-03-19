@@ -2457,7 +2457,8 @@
      3. ABOUT — Image Parallax
   ══════════════════════════════════════════════════════════ */
   const aboutImg = $('.about-img');
-  if (aboutImg && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  if (aboutImg && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined'
+      && window.innerWidth >= 768) {
     gsap.set(aboutImg, { scale: 1.13 });
     gsap.fromTo(aboutImg,
       { yPercent: 5 },
