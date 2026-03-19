@@ -2225,12 +2225,7 @@
 /* ─── About ────────────────────────────────────────────────── */
 .about-image-wrap {
   overflow: hidden;
-  opacity: 0;
-  transform: translateX(-32px);
-  transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1),
-              transform 0.9s cubic-bezier(0.22,1,0.36,1);
 }
-.about-image-wrap.anim-in { opacity: 1; transform: translateX(0); }
 .about-img { will-change: transform; transform-origin: center; }
 .about-text .section-tag,
 .about-text h2,
@@ -2477,11 +2472,9 @@
     start: 'top 90%',
     once: true,
     onEnter: () => {
-      const iw    = $('.about-image-wrap');
       const at    = $('.about-text');
       const stats = $('.about-stats');
 
-      if (iw) iw.classList.add('anim-in');
       if (at) at.classList.add('anim-in');
 
       const done = (0.32 + 1.5) * 1000 + 100; // longest delay + transition + buffer
