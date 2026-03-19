@@ -2227,18 +2227,21 @@
   overflow: hidden;
 }
 .about-img { will-change: transform; transform-origin: center; }
+/* Default: visible — JS adds .about-text-ready to hide before animating */
 .about-text .section-tag,
 .about-text h2,
 .about-text p {
-  clip-path: inset(0 100% 0 0);
   transition: clip-path 1.5s cubic-bezier(0.22,1,0.36,1);
 }
-.about-text.anim-in .section-tag { transition-delay: 0s; }
-.about-text.anim-in h2           { transition-delay: 0.16s; }
-.about-text.anim-in p            { transition-delay: 0.32s; }
-.about-text.anim-in .section-tag,
-.about-text.anim-in h2,
-.about-text.anim-in p { clip-path: inset(0 0% 0 0); }
+.about-text-ready .section-tag,
+.about-text-ready h2,
+.about-text-ready p { clip-path: inset(0 100% 0 0); }
+.about-text-ready.anim-in .section-tag { transition-delay: 0s; }
+.about-text-ready.anim-in h2           { transition-delay: 0.16s; }
+.about-text-ready.anim-in p            { transition-delay: 0.32s; }
+.about-text-ready.anim-in .section-tag,
+.about-text-ready.anim-in h2,
+.about-text-ready.anim-in p { clip-path: inset(0 0% 0 0); }
 .about-stats {
   opacity: 0;
   transform: translateY(8px);
@@ -2468,21 +2471,26 @@
       }
     );
   }
-  ScrollTrigger.create({
-    trigger: '.about-text',
-    start: 'top 90%',
-    once: true,
-    onEnter: () => {
-      const at    = $('.about-text');
-      const stats = $('.about-stats');
+  (function () {
+    const at = $('.about-text');
+    if (!at) return;
+    const stats = $('.about-stats');
 
-      if (at) at.classList.add('anim-in');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        at.classList.add('anim-in');
+        obs.unobserve(at);
+        const done = (0.32 + 1.5) * 1000 + 100;
+        if (stats) setTimeout(() => stats.classList.add('anim-in'), done);
+        setTimeout(() => $$('#aboutStats .counter').forEach(ticker), done);
+      });
+    }, { threshold: 0, rootMargin: '-10% 0px 0px 0px' });
 
-      const done = (0.32 + 1.5) * 1000 + 100; // longest delay + transition + buffer
-      if (stats) setTimeout(() => stats.classList.add('anim-in'), done);
-      setTimeout(() => $$('#aboutStats .counter').forEach(ticker), done);
-    }
-  });
+    // Add hidden class AFTER observer is set up — text stays visible if JS fails
+    at.classList.add('about-text-ready');
+    obs.observe(at);
+  })();
 
   /* ══════════════════════════════════════════════════════════
      4. ABOUT — Number Ticker (nonlinear easeOutExpo)
