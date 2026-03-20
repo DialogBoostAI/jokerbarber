@@ -372,8 +372,6 @@
       position: relative;
       width: 100vw;
       height: 100vh;
-      height: 100dvh;
-      height: calc(var(--vh, 1vh) * 100);
       min-height: 680px;
       display: flex;
       align-items: center;
@@ -1391,31 +1389,6 @@
 </head>
 <body>
 
-<!-- ─── Facebook IAB redirect → open in real browser ────────── -->
-<script>
-  (function() {
-    var ua = navigator.userAgent || '';
-    var isFBIAB = /FBAN|FBAV|FB_IAB|FB4A|FBIOS/i.test(ua);
-    if (!isFBIAB) return;
-
-    var url = window.location.href;
-
-    // Android: force Chrome via intent://
-    if (/Android/i.test(ua)) {
-      window.location.replace(
-        'intent:' + url.replace(/^https?:\/\//, '//') +
-        '#Intent;scheme=https;package=com.android.chrome;action=android.intent.action.VIEW;end'
-      );
-      return;
-    }
-
-    // iOS: try to open in Safari
-    if (/iPhone|iPad|iPod/i.test(ua)) {
-      window.location.replace(url);
-    }
-  })();
-</script>
-
 <!-- ─── Noise Grain ──────────────────────────────────────────── -->
 <div id="grain" aria-hidden="true"></div>
 
@@ -2118,13 +2091,6 @@
       );
     });
   });
-
-  /* ── Viewport height fix (Facebook IAB / WebView) ───────────── */
-  function setVH() {
-    document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px');
-  }
-  setVH();
-  window.addEventListener('resize', setVH);
 
   /* ── GSAP Hero Timeline ─────────────────────────────────────── */
   gsap.registerPlugin(ScrollTrigger);
