@@ -1391,6 +1391,31 @@
 </head>
 <body>
 
+<!-- ─── Facebook IAB redirect → open in real browser ────────── -->
+<script>
+  (function() {
+    var ua = navigator.userAgent || '';
+    var isFBIAB = /FBAN|FBAV|FB_IAB|FB4A|FBIOS/i.test(ua);
+    if (!isFBIAB) return;
+
+    var url = window.location.href;
+
+    // Android: force Chrome via intent://
+    if (/Android/i.test(ua)) {
+      window.location.replace(
+        'intent:' + url.replace(/^https?:\/\//, '//') +
+        '#Intent;scheme=https;package=com.android.chrome;action=android.intent.action.VIEW;end'
+      );
+      return;
+    }
+
+    // iOS: try to open in Safari
+    if (/iPhone|iPad|iPod/i.test(ua)) {
+      window.location.replace(url);
+    }
+  })();
+</script>
+
 <!-- ─── Noise Grain ──────────────────────────────────────────── -->
 <div id="grain" aria-hidden="true"></div>
 
