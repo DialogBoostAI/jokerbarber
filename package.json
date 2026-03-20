@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "motion": "^12.38.0",
     "puppeteer": "^24.39.1"
   },
   "devDependencies": {
